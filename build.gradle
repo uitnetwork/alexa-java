@@ -1,12 +1,36 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.0-M6'
+    }
+}
+
 apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.junit.platform.gradle.plugin'
+
 
 repositories {
     mavenCentral()
 }
 
+ext.junitPlatformVersion = '1.0.0-M6'
+ext.junitJupiterVersion = '5.0.0-M6'
+ext.springVersion='4.3.10.RELEASE'
+
 dependencies {
     compile 'com.amazon.alexa:alexa-skills-kit:1.4.0'
     compile 'com.amazonaws:aws-lambda-java-log4j:1.0.0'
+    compile "org.springframework:spring-context:${springVersion}"
+
+    testCompile "org.springframework:spring-test:${springVersion}"
+    testCompile 'org.assertj:assertj-core:3.8.0'
+    testCompile("org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}")
+    testRuntime("org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}")
+    // Only needed to run tests in an (IntelliJ) IDE(A) that bundles an older version
+    testRuntime("org.junit.platform:junit-platform-launcher:${junitPlatformVersion}")
 }
 
 task buildZip(type: Zip) {
@@ -18,3 +42,21 @@ task buildZip(type: Zip) {
 }
 
 build.dependsOn buildZip
+
+junitPlatform {
+    platformVersion '1.0.0-M6'
+    filters {
+        engines {
+            include 'junit-jupiter'
+            // exclude 'custom-engine'
+        }
+        tags {
+            // include 'fast'
+//            exclude 'slow'
+        }
+        // includeClassNamePattern '.*Test'
+    }
+    // enableStandardTestTask true
+    // reportsDir file('build/test-results/junit-platform') // this is the default
+//    logManager 'org.apache.logging.log4j.jul.LogManager'
+}

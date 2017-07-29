@@ -1,7 +1,10 @@
-package com.uitnetwork.alexa.speechlet;
+package com.uitnetwork.alexa.service;
+
+import static org.slf4j.LoggerFactory.getLogger;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import com.amazon.speech.json.SpeechletRequestEnvelope;
 import com.amazon.speech.slu.Intent;
@@ -9,8 +12,9 @@ import com.amazon.speech.speechlet.*;
 import com.amazon.speech.ui.PlainTextOutputSpeech;
 import com.amazon.speech.ui.Reprompt;
 
-public class HelloWorldSpeechlet implements SpeechletV2 {
-    private static final Logger logger = LoggerFactory.getLogger(HelloWorldSpeechlet.class);
+@Service
+public class SpeechletService implements SpeechletV2{
+    private static final Logger logger = getLogger(SpeechletService.class);
 
     @Override
     public void onSessionStarted(SpeechletRequestEnvelope<SessionStartedRequest> requestEnvelope) {
