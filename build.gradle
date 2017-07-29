@@ -6,6 +6,7 @@ repositories {
 
 dependencies {
     compile 'com.amazon.alexa:alexa-skills-kit:1.4.0'
+    compile 'com.amazonaws:aws-lambda-java-log4j:1.0.0'
 }
 
 task buildZip(type: Zip) {
