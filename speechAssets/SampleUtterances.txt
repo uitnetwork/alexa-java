@@ -1,7 +1,6 @@
-HelloWorldIntent say hello
-HelloWorldIntent say hello world
-HelloWorldIntent hello
-HelloWorldIntent say hi
-HelloWorldIntent say hi world
-HelloWorldIntent hi
-HelloWorldIntent how are you
+MyNameIntent my name is {test | MY_NAME}
+MyNameIntent my name's {test | MY_NAME}
+TimeIntent tell me what time it is
+TimeIntent what time is it
+TimeIntent what is the time
+TimeIntent the time is

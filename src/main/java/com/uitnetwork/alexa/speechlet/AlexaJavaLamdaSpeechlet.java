@@ -7,9 +7,10 @@ import com.amazon.speech.json.SpeechletRequestEnvelope;
 import com.amazon.speech.speechlet.*;
 import com.uitnetwork.alexa.config.SpringConfig;
 import com.uitnetwork.alexa.service.SpeechletService;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class AlexaJavaLamdaSpeechlet extends AbstractSpringAwareSpeechlet<SpringConfig> {
-    private static final Logger logger = LoggerFactory.getLogger(AlexaJavaLamdaSpeechlet.class);
 
     private final SpeechletService speechletService;
 
@@ -19,7 +20,7 @@ public class AlexaJavaLamdaSpeechlet extends AbstractSpringAwareSpeechlet<Spring
 
     @Override
     public void onSessionStarted(SpeechletRequestEnvelope<SessionStartedRequest> requestEnvelope) {
-        logger.info("Delegating to SpeechletService: {}", speechletService);
+        log.info("Delegating to SpeechletService: {}", speechletService);
 
         speechletService.onSessionStarted(requestEnvelope);
     }

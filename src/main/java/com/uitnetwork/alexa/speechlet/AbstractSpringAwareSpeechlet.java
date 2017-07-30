@@ -9,9 +9,10 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.amazon.speech.speechlet.SpeechletV2;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public abstract class AbstractSpringAwareSpeechlet<T> implements SpeechletV2 {
-    private static final Logger logger = LoggerFactory.getLogger(AbstractSpringAwareSpeechlet.class);
 
     protected final ApplicationContext applicationContext;
 
@@ -19,6 +20,6 @@ public abstract class AbstractSpringAwareSpeechlet<T> implements SpeechletV2 {
         Class<T> typeParameterClass = ((Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0]);
         applicationContext = new AnnotationConfigApplicationContext(typeParameterClass);
 
-        logger.info("Created {} instance: {}.", this.getClass().getSimpleName(), this);
+        log.info("Created {} instance: {}.", this.getClass().getSimpleName(), this);
     }
 }
